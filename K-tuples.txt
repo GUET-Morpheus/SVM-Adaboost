@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+//stdout = freopen("out.txt", "w", stdout);
+void permutation(char s[], char u[], char o[], int n, int m, int p )
+{
+	int i;
+	//FILE *fp;
+	if (p == m) /*达到所选则的数目*/
+	{
+		//fp = fopen("1.txt", "w+");
+		for (i = 0; i < m; i++)
+					printf("%c", o[i],*stdout);
+		            printf("\n");
+	}
+	else
+	{
+		for (i = 0; i < n; i++)
+		{
+			if (u[i] != m) /*如当前元素为达到使用次数即m次*/
+			{
+				u[i] += 1; o[p] = s[i];
+				permutation(s, u, o, n, m, p + 1);
+				u[i] -= 1;
+			}
+		}
+	}
+	//fclose(fp);
+}
+int main()
+{
+	char s[] = "ACGT";/*原集合数据*/
+	char o[4];     /*用于输出的*/
+	char u[4] = { 0 }; /*用来标记当前元素所使用的次数*/
+	permutation(s, u, o, 4, 7, 0);/*以4取3的排列为例*/
+
+	system("PAUSE");
+	return 0;
+}
